@@ -1,0 +1,182 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            BigInt
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model User {
+  id             BigInt           @id @default(autoincrement())
+  email          String           @unique
+  name           String?
+  image          String?
+  emailVerified  DateTime?
+  createdAt      DateTime         @default(now())
+  updatedAt      DateTime         @updatedAt
+  customers      Customer[]
+  Session        Session[]
+  Account        Account[]
+  ConnectionInfo ConnectionInfo[]
+  SavedQuery     SavedQuery[]
+  teams          Team[]           @relation("members")
+  Team           Team[]
+
+  @@index([email])
+}
+
+model ConnectionInfo {
+  id               String   @id @default(cuid())
+  name             String
+  connectionString String?  @default("")
+  db               String
+  dbData           String[]
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+  createdBy        String
+  user             User     @relation(fields: [createdBy], references: [email])
+
+  @@index([createdBy])
+}
+
+model SavedQuery {
+  id                  String         @id @default(cuid())
+  connectionString    String         @default("")
+  prompt              String         @default("")
+  chartPrompt         String         @default("")
+  query               String         @default("")
+  name                String         @default("")
+  chartX              String         @default("")
+  chartY              String         @default("")
+  chartType           String         @default("")
+  connectResponse     Json[]         @default([])
+  isSuccessfulConnect Boolean        @default(false)
+  createdAt           DateTime       @default(now())
+  updatedAt           DateTime       @updatedAt
+  createdBy           String
+  user                User           @relation(fields: [createdBy], references: [email])
+  DashboardTab        DashboardTab[]
+
+  @@index([createdBy])
+}
+
+model DashboardTab {
+  id           String       @id @default(cuid())
+  name         String
+  createdBy    String
+  savedQueries SavedQuery[]
+  isDashboard  Boolean      @default(true)
+
+  @@index([createdBy])
+}
+
+model Team {
+  id        String @id @default(cuid())
+  name      String
+  createdBy String
+  members   User[] @relation("members")
+  user      User   @relation(fields: [createdBy], references: [email])
+
+  TeamConnectionInfo TeamConnectionInfo[]
+
+  @@index([createdBy])
+}
+
+model TeamConnectionInfo {
+  id               String   @id @default(cuid())
+  name             String
+  connectionString String?  @default("")
+  db               String
+  dbData           String[]
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+  createdBy        String
+  team             Team     @relation(fields: [teamId], references: [id], onDelete: Cascade)
+  teamId           String
+
+  @@index([createdBy])
+}
+
+model Customer {
+  id           BigInt        @id @default(autoincrement())
+  user         User          @relation(fields: [userId], references: [id])
+  userId       BigInt
+  stripeId     String        @unique
+  subscription Subscription?
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+}
+
+model Subscription {
+  id                BigInt   @id @default(autoincrement())
+  customer          Customer @relation(fields: [customerId], references: [stripeId])
+  customerId        String   @unique
+  stripeId          String
+  stripePriceId     String
+  stripeProductName String
+  status            String
+  quantity          String
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+}
+
+model Conversation {
+  id        String                @id @default(uuid()) @db.Uuid
+  userId    BigInt
+  name      String
+  folderId  String?               @db.Uuid
+  messages  ConversationMessage[]
+  createdAt DateTime              @default(now())
+  updatedAt DateTime              @updatedAt
+  modelId   Int?                  @default(0)
+  isPublic  Boolean               @default(false)
+}
+
+model ConversationMessage {
+  id             String       @id @default(uuid()) @db.Uuid
+  conversationId String       @db.Uuid
+  role           String
+  content        String       @db.Text
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+  conversation   Conversation @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       BigInt
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model VerificationToken {
+  identifier String
+  token      String
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
