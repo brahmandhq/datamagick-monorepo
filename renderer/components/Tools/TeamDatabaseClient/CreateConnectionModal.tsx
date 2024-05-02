@@ -18,11 +18,11 @@ import { ListItemText } from "@mui/material";
 
 const dbOpions = [
   {
-    label: "MongoDb",
+    label: "MongoDB",
     value: "mongodb",
   },
   {
-    label: "PostgreSql",
+    label: "PostgreSQL",
     value: "postgresql",
   },
 ];
