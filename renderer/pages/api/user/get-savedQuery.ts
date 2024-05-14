@@ -1,12 +1,15 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import prisma from "@/lib/prisma";
-
+import { getServerSession } from "next-auth";
+import { authOptions } from "../auth/[...nextauth]";
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
   if (req.method === "POST") {
     try {
+      const session = await getServerSession(authOptions);
+      console.log(session, "session from server by 14");
       const { email } = req.body;
       const savedQueries = await prisma.savedQuery.findMany({
         where: { createdBy: String(email) },

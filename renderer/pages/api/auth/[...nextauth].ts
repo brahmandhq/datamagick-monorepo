@@ -4,6 +4,7 @@ import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import GithubProvider from "next-auth/providers/github";
 import EmailProvider from "next-auth/providers/email";
+import type { NextAuthOptions } from "next-auth";
 
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 
@@ -44,7 +45,7 @@ const getUserId = async ({ email, name, picture }) => {
   return { userId, subId, subName };
 };
 
-export default NextAuth({
+export const authOptions: NextAuthOptions = {
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID,
@@ -125,4 +126,6 @@ export default NextAuth({
     },
   },
   debug: true,
-});
+};
+
+export default NextAuth(authOptions);
