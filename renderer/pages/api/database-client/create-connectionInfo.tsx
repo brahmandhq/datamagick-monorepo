@@ -1,5 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { PrismaClient } from '@prisma/client'
+import { getServerSession } from 'next-auth';
+import { authOptions } from '../auth/[...nextauth]';
 
 const prisma = new PrismaClient()
 
@@ -7,25 +9,26 @@ type RequestBody = {
     name: string,
     db: string,
     dbData: string[],
-    email: string
 }
-
-
 
 export default async function handler(
     req: NextApiRequest,
     res: NextApiResponse
 ) {
     if (req.method === "POST") {
-        const { name, db, dbData, email } = req.body as RequestBody;
-
+        const { name, db, dbData, } = req.body as RequestBody;
+        const session = await getServerSession(req, res, authOptions);
+        if (!session) {
+            res.status(401).json({ error: 'Unauthorized Access' });
+            return;
+        }
         try {
             const dbInfo = await prisma.connectionInfo.create({
                 data: {
                     name: name,
                     db: db,
                     dbData: dbData,
-                    createdBy: email,
+                    createdBy: session?.user?.email,
                 },
             });
             console.log("Database Info: ", dbInfo)

@@ -30,8 +30,8 @@ function arrayToObject(arr) {
 }
 export const getDbInfo = async (setConnections, email) => {
   try {
-    const response = await axios.post(
-      `/api/database-client/get-connectionInfo`, { email }
+    const response = await axios.get(
+      `/api/database-client/get-connectionInfo`
     );
 
     if (response) {
@@ -63,8 +63,8 @@ export const getDbInfo = async (setConnections, email) => {
 }
 export const getSavedQuery = async (setSavedQueryTabs, email) => {
   try {
-    const response = await axios.post(
-      `/api/user/get-savedQuery`, { email }
+    const response = await axios.get(
+      `/api/user/get-savedQuery`,
     );
 
     if (response) {
@@ -78,8 +78,8 @@ export const getSavedQuery = async (setSavedQueryTabs, email) => {
 }
 export const getDashboard = async (setSavedDashboardTabs, email) => {
   try {
-    const response = await axios.post(
-      `/api/user/get-dashboard`, { email }
+    const response = await axios.get(
+      `/api/user/get-dashboard`
     );
 
     if (response) {

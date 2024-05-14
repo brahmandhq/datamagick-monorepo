@@ -1,22 +1,24 @@
 import prisma from "@/lib/prisma";
 import { NextApiRequest, NextApiResponse } from "next";
+import { authOptions } from "../auth/[...nextauth]";
+import { getServerSession } from "next-auth";
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  if (req.method !== "POST") {
+  if (req.method !== "GET") {
     return res.status(405).json({
       error: "Method Not Allowed",
-      message: "This endpoint only supports POST requests",
+      message: "This endpoint only supports GET requests",
     });
   }
 
   try {
-    const { createdBy } = req.body;
+    const session = await getServerSession(req, res, authOptions);
     const dashboardTabs = await prisma.dashboardTab.findMany({
       where: {
-        createdBy: createdBy as string,
+        createdBy: session?.user?.email,
       },
       include: {
         savedQueries: true,

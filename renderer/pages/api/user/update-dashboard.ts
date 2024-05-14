@@ -1,5 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import prisma from "@/lib/prisma";
+import { authOptions } from "../auth/[...nextauth]";
+import { getServerSession } from "next-auth";
 
 export default async function handler(
   req: NextApiRequest,
@@ -7,10 +9,11 @@ export default async function handler(
 ) {
   if (req.method === "PUT") {
     try {
-      const { tabId, savedQueryId, userEmail } = req.body;
+      const session = await getServerSession(req, res, authOptions);
+      const { tabId, savedQueryId } = req.body;
       const tab = await prisma.dashboardTab.findFirst({
         where: {
-          AND: [{ id: tabId }, { createdBy: userEmail }],
+          AND: [{ id: tabId }, { createdBy: session?.user?.email }],
         },
       });
       if (!tab) {

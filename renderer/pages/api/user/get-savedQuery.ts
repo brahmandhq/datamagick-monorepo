@@ -6,13 +6,14 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  if (req.method === "POST") {
+  if (req.method === "GET") {
     try {
-      const session = await getServerSession(authOptions);
-      console.log(session, "session from server by 14");
-      const { email } = req.body;
+      const session = await getServerSession(req, res, authOptions);
+      if (!session) {
+        return res.status(401).json({ error: "Unauthorized Access" });
+      }
       const savedQueries = await prisma.savedQuery.findMany({
-        where: { createdBy: String(email) },
+        where: { createdBy: String(session?.user?.email) },
       });
       return res.status(200).json(savedQueries);
     } catch (error) {

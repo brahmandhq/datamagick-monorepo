@@ -1,5 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import prisma from "@/lib/prisma";
+import { getServerSession } from "next-auth";
+import { authOptions } from "../auth/[...nextauth]";
 
 export default async function handler(
   req: NextApiRequest,
@@ -7,11 +9,18 @@ export default async function handler(
 ) {
   if (req.method === "POST") {
     try {
-      const { name, userEmail } = req.body;
+      const session = await getServerSession(req, res, authOptions);
+      if (!session) {
+        res
+          .status(401)
+          .json({ error: "You should be logged in to create dashboard" });
+        return;
+      }
+      const { name } = req.body;
       const createdTab = await prisma.dashboardTab.create({
         data: {
           name,
-          createdBy: userEmail,
+          createdBy: session?.user?.email,
         },
       });
 

@@ -9,9 +9,14 @@ export default async function handler(
     req: NextApiRequest,
     res: NextApiResponse
 ) {
-    if (req.method === "POST") {
+    if (req.method === "GET") {
         try {
-            const { email } = req.body
+            const session = await getServerSession(req, res, authOptions);
+            if (!session) {
+                res.status(401).json({ error: 'Unauthorized' });
+                return;
+            }
+            const { email } = session.user;
             const data = await prisma.connectionInfo.findMany(
                 {
                     where: {

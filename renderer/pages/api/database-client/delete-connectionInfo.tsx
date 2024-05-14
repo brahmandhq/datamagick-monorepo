@@ -5,7 +5,6 @@ const prisma = new PrismaClient()
 
 type RequestBody = {
     id: string;
-
 }
 
 export default async function handler(
@@ -14,7 +13,6 @@ export default async function handler(
 ) {
     if (req.method === "DELETE") {
         const { id } = req.body as RequestBody;
-
         try {
             const dbInfo = await prisma.connectionInfo.delete({
                 where: {
