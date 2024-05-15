@@ -1,8 +1,7 @@
-// pages/api/team/connectionInfo/create.ts
-
 import prisma from "@/lib/prisma";
 import { NextApiRequest, NextApiResponse } from "next";
-import { getSession } from "next-auth/react";
+import { getServerSession } from "next-auth";
+import { authOptions } from "../auth/[...nextauth]";
 
 export default async function handler(
   req: NextApiRequest,
@@ -16,7 +15,9 @@ export default async function handler(
   }
 
   try {
-    const { name, connectionString, db, dbData, teamId, email } = req.body;
+    const session = await getServerSession(req, res, authOptions);
+
+    const { name, connectionString, db, dbData, teamId } = req.body;
 
     const team = await prisma.team.findUnique({ where: { id: teamId } });
     if (!team) {
@@ -30,7 +31,7 @@ export default async function handler(
         name,
         db,
         dbData,
-        createdBy: email,
+        createdBy: session.user.email,
         team: { connect: { id: team.id } },
       },
     });

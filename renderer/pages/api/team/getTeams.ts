@@ -1,32 +1,24 @@
-// pages/api/getTeams.ts
-
 import { NextApiRequest, NextApiResponse } from "next";
-import { getSession } from "next-auth/react";
 import { PrismaClient } from "@prisma/client";
 import { getServerSession } from "next-auth";
-
-const prisma = new PrismaClient();
+import prisma from "@/lib/prisma";
+import { authOptions } from "../auth/[...nextauth]";
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  if (req.method !== "POST") {
+  if (req.method !== "GET") {
     return res.status(405).json({ error: "Method Not Allowed" });
   }
 
   try {
-    // const session = await getSession({ req });
-    // if (!session) {
-    //   return res.status(401).json({ error: "Unauthorized" });
-    // }
-    // console.log(session);
-    const { userEmail } = req.body;
+    const session = await getServerSession(req, res, authOptions);
     const userTeams = await prisma.team.findMany({
       where: {
         OR: [
-          { createdBy: userEmail },
-          { members: { some: { email: userEmail } } },
+          { createdBy: session?.user?.email },
+          { members: { some: { email: session?.user?.email } } },
         ],
       },
       include: {

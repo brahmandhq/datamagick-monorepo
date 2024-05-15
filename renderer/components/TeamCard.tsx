@@ -91,7 +91,7 @@ const TeamCard = ({ team, onUpdated }) => {
         try {
             setDeleteLoading(true);
             const response = await axios.delete('/api/team/delete', {
-                data: { id: team.id, email: data.user.email },
+                data: { id: team.id },
             });
             if (response.status === 200) {
                 toast.success("Team Delete successfully", {

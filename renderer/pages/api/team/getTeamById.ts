@@ -1,5 +1,7 @@
 import prisma from "@/lib/prisma";
 import { NextApiRequest, NextApiResponse } from "next";
+import { authOptions } from "../auth/[...nextauth]";
+import { getServerSession } from "next-auth";
 
 export default async function handler(
   req: NextApiRequest,
@@ -7,13 +9,14 @@ export default async function handler(
 ) {
   if (req.method === "POST") {
     try {
-      const { teamId, userEmail } = req.body;
+      const session = await getServerSession(req, res, authOptions);
+      const { teamId } = req.body;
       const isMember = await prisma.team.findFirst({
         where: {
           id: teamId,
           members: {
             some: {
-              email: userEmail,
+              email: session?.user?.email,
             },
           },
         },

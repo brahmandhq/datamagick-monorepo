@@ -149,22 +149,10 @@ export default function NewDevTool() {
     }
   }
   const { data } = useSession();
-  const getTeamsConnection = async () => {
-    try {
-      const response = await axios.post(`/api/team/get-connectionInfo`, { userEmail: data?.user?.email });
-      if (response) {
-        console.log("Teams: ", response.data);
-      }
-    } catch (error) {
-      console.log("Error fetching teams: ", error);
-    }
-  }
   useEffect(() => {
     getDbInfo(setConnections, data?.user?.email);
     getSavedQuery(setSavedQueryTabs, data?.user?.email);
     getDashboard(setSavedDashboardTabs, data?.user?.email);
-    // getTeams();
-    // getTeamsConnection();
   }, [])
 
   const addTab = () => {

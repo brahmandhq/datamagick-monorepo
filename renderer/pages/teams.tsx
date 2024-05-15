@@ -91,7 +91,7 @@ export default function Teams() {
     const handleSubmit = async (e) => {
         try {
             setLoading(true);
-            const response = await axios.post('/api/team/create', { name: teamName, members, connectionInfo: selectedConnectionIds, createdBy: data.user.email })
+            const response = await axios.post('/api/team/create', { name: teamName, members, connectionInfo: selectedConnectionIds })
             if (response.status === 200) {
                 console.log('team created successfully')
                 toast.success("Team Created successfully", {
@@ -124,7 +124,7 @@ export default function Teams() {
     const getTeams = async () => {
         try {
             setIsFetching(true);
-            const response = await axios.post(`/api/team/getTeams`, { userEmail: data?.user?.email });
+            const response = await axios.get(`/api/team/getTeams`);
             if (response && response.data && response.data.teams) {
                 setTeams(response.data.teams);
                 setIsFetching(false);

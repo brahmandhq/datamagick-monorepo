@@ -41,7 +41,6 @@ export const getDbInfo = async (
     const getTeamById = async () => {
       try {
         const response = await axios.post(`/api/team/getTeamById`, {
-          userEmail: email,
           teamId: id,
         });
         if (response && response.data) {
@@ -151,7 +150,7 @@ export default function NewDevTool() {
   const { id } = router.query;
   const getTeamsConnection = async () => {
     try {
-      const response = await axios.post(`/api/team/get-connectionInfo`, { userEmail: data?.user?.email });
+      const response = await axios.get(`/api/team/get-connectionInfo`);
       if (response) {
         console.log("Teams: ", response.data);
       }

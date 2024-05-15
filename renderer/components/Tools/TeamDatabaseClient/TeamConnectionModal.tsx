@@ -84,7 +84,7 @@ export default function TeamConnectionModal(props) {
         try {
             const response = await axios.post(
                 "/api/team/create-connectionInfo",
-                { name, db, dbData, teamId, email },
+                { name, db, dbData, teamId },
                 { headers: { "Content-Type": "application/json" } }
             );
 

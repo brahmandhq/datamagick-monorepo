@@ -1,18 +1,21 @@
 import prisma from "@/lib/prisma";
 import { NextApiRequest, NextApiResponse } from "next";
+import { authOptions } from "../auth/[...nextauth]";
+import { getServerSession } from "next-auth";
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
   if (req.method === "POST") {
     try {
-      const { name, createdBy, members = [] } = req.body;
-      const allMembers = [...members, createdBy];
+      const session = await getServerSession(req, res, authOptions);
+      const { name, members = [] } = req.body;
+      const allMembers = [...members, session?.user?.email];
       const team = await prisma.team.create({
         data: {
           name: name,
           user: {
-            connect: { email: createdBy },
+            connect: { email: session?.user?.email },
           },
           members: {
             connectOrCreate: allMembers.map((email) => ({
