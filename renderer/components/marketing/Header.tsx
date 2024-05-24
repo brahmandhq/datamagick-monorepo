@@ -12,7 +12,7 @@ export default function Header() {
   const { data: session, status } = useSession();
   return (
     <section className="z-10 mx-auto mb-0 max-w-6xl p-8 xl:mb-20 xl:p-0">
-      <div className="z-10 flex flex-col flex-wrap items-center justify-between py-1 md:flex-row">
+      <div className="z-10 flex flex-col flex-wrap items-center justify-between py-5 md:flex-row">
         <Link href="/?f=t">
           <div className="title-font mb-6 flex cursor-pointer items-center font-medium md:mb-0">
             <img src="/logo.png" className="z-10 w-16" alt="DataMagick Logo" />

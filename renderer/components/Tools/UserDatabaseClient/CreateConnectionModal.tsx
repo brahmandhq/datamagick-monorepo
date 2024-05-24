@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Controller, useForm } from "react-hook-form";
-import { useRouter } from 'next/router';
+import { useRouter } from "next/router";
 import { zodResolver } from "@hookform/resolvers/zod";
 import CloseIcon from "@mui/icons-material/Close";
 import IconButton from "@mui/material/IconButton";
@@ -8,21 +8,22 @@ import { Modal } from "@nextui-org/react";
 import axios from "axios";
 import { v4 as uuidv4 } from "uuid";
 import * as z from "zod";
-import { useSession } from 'next-auth/react';
-import { Button } from '@nextui-org/react';
+import { useSession } from "next-auth/react";
+import { Button } from "@nextui-org/react";
 import Input from "../../Input";
 import Select from "../../Select";
 import { getDbInfo } from ".";
 import { toast } from "react-toastify";
 import { ListItemText } from "@mui/material";
+import { Label } from "@blueprintjs/core";
 
 const dbOpions = [
   {
-    label: "MongoDb",
+    label: "MongoDB",
     value: "mongodb",
   },
   {
-    label: "PostgreSql",
+    label: "PostgreSQL",
     value: "postgresql",
   },
 ];
@@ -43,7 +44,7 @@ export default function CreateConnectionModal(props) {
     setCurrentConnectionId,
   } = props;
   const [open, setOpen] = React.useState(false);
-  const [status, setStatus] = React.useState('');
+  const [status, setStatus] = React.useState("");
   const [loading, setLoading] = React.useState(false);
   const {
     handleSubmit,
@@ -54,7 +55,7 @@ export default function CreateConnectionModal(props) {
     defaultValues: {
       name: "",
       dbConnectionString: "",
-      db: "mongodb",
+      db: "postgresql",
     },
   });
 
@@ -73,8 +74,13 @@ export default function CreateConnectionModal(props) {
 
     return Object.keys(tableNames);
   }
-  const storeDbInfo = async (name: string, db: string, dbData: string[], email: string) => {
-    setStatus('Creating Connection...')
+  const storeDbInfo = async (
+    name: string,
+    db: string,
+    dbData: string[],
+    email: string
+  ) => {
+    setStatus("Creating Connection...");
     try {
       const response = await axios.post(
         "/api/database-client/create-connectionInfo",
@@ -85,22 +91,18 @@ export default function CreateConnectionModal(props) {
       if (response) {
         return response.data.dbInfo;
       }
-
     } catch (e) {
       console.log("Error storing DbInfo: ", e);
     }
   };
 
   const onSubmit = async (values: z.infer<typeof connectionSchema>) => {
-    setStatus('Connecting...')
+    setStatus("Connecting...");
     setLoading(true);
     try {
-      const response = await axios.post(
-        `/api/database-client/connect`,
-        {
-          connectionString: values.dbConnectionString,
-        }
-      );
+      const response = await axios.post(`/api/database-client/connect`, {
+        connectionString: values.dbConnectionString,
+      });
       if (response.status !== 200) {
         toast.error("Error occurred while connecting to database", {
           position: "top-right",
@@ -122,7 +124,7 @@ export default function CreateConnectionModal(props) {
         position: "top-right",
       });
     } finally {
-      setStatus('');
+      setStatus("");
       setLoading(false);
     }
   };
@@ -130,7 +132,7 @@ export default function CreateConnectionModal(props) {
   return (
     <React.Fragment>
       <ListItemText
-        className="text-white"
+        className="text-green"
         onClick={(event) => {
           event.stopPropagation();
           handleClickOpen();
@@ -146,6 +148,7 @@ export default function CreateConnectionModal(props) {
           event.stopPropagation();
         }}
         style={{ background: "#202020" }}
+        className="py-[16px]"
       >
         <Modal.Header>
           <h1 className="mb-8 text-2xl font-bold mr-auto tracking-normal text-white">
@@ -165,17 +168,21 @@ export default function CreateConnectionModal(props) {
           </IconButton>
         </Modal.Header>
         <form action="" onSubmit={handleSubmit(onSubmit)}>
-          <Modal.Body className="w-full flex flex-col gap-3">
+          <Modal.Body className="w-full flex flex-col gap-3 overflow-visible">
             <div className="flex flex-col">
               <Controller
                 name="name"
                 control={control}
                 render={({ field }) => (
-                  <Input
-                    {...field}
-                    placeholder="Name"
-                    className="zero-radius"
-                  />
+                  <>
+                    <p className="pb-2 font-semibold">Name</p>
+                    <Input
+                      {...field}
+                      clearable
+                      placeholder="DataMagick PostgresSQL Production"
+                      className="zero-radius"
+                    />
+                  </>
                 )}
               />
               {errors.name && (
@@ -187,14 +194,18 @@ export default function CreateConnectionModal(props) {
                 name="dbConnectionString"
                 control={control}
                 render={({ field }) => (
-                  <Input
-                    {...field}
-                    name="db-connection-string"
-                    id="db-connection-string"
-                    className="zero-radius"
-                    placeholder="postgres://<username>:<password-here>@<hostname>:<port>"
-                    type="password"
-                  />
+                  <>
+                    <p className="pb-2 font-semibold">Connection String</p>
+                    <Input
+                      {...field}
+                      clearable
+                      name="db-connection-string"
+                      id="db-connection-string"
+                      className="zero-radius"
+                      placeholder="postgres://<username>:<password-here>@<hostname>:<port>"
+                      type="password"
+                    />
+                  </>
                 )}
               />
               {errors.dbConnectionString && (
@@ -203,17 +214,24 @@ export default function CreateConnectionModal(props) {
                 </p>
               )}
             </div>
-            <Controller
-              name="db"
-              control={control}
-              render={({ field }) => (
-                <Select
-                  {...field}
-                  options={dbOpions}
-                  style={{ color: "#D7D8DB" }}
-                />
-              )}
-            />
+            <div className="flex flex-col">
+              <Controller
+                name="db"
+                control={control}
+                render={({ field }) => (
+                  <>
+                    <p className="pb-2 font-semibold">Database Type</p>
+                    <Select
+                      {...field}
+                      clearable
+                      labelPlaceholder="Name"
+                      options={dbOpions}
+                      style={{ color: "#D7D8DB" }}
+                    />
+                  </>
+                )}
+              />
+            </div>
             {/* <Select
                             name="db"
                             value={db}
@@ -229,7 +247,7 @@ export default function CreateConnectionModal(props) {
               color="primary"
               className="bg-[#0070ef] text-white"
             >
-              {loading ? status : 'Connect'}
+              {loading ? status : "Connect"}
             </Button>
           </Modal.Footer>
         </form>

@@ -26,9 +26,9 @@ export default function TermsOfService() {
 
       <p>
         Permission is granted to temporarily download one copy of the materials
-        on DevKit&apos;s Website for personal, non-commercial transitory viewing
-        only. This is the grant of a license, not a transfer of title, and under
-        this license you may not:
+        on DataMagick&apos;s Website for personal, non-commercial transitory
+        viewing only. This is the grant of a license, not a transfer of title,
+        and under this license you may not:
       </p>
 
       <ul>
@@ -38,8 +38,8 @@ export default function TermsOfService() {
           display;
         </li>
         <li>
-          attempt to reverse engineer any software contained on DevKit&apos;s
-          Website;
+          attempt to reverse engineer any software contained on
+          DataMagick&apos;s Website;
         </li>
         <li>
           remove any copyright or other proprietary notations from the
@@ -52,7 +52,7 @@ export default function TermsOfService() {
       </ul>
 
       <p>
-        This will let DevKit to terminate upon violations of any of these
+        This will let DataMagick to terminate upon violations of any of these
         restrictions. Upon termination, your viewing right will also be
         terminated and you should destroy any downloaded materials in your
         possession whether it is printed or electronic format. These Terms of
@@ -66,22 +66,22 @@ export default function TermsOfService() {
       <p className="my-4 text-xl font-semibold">3. Disclaimer</p>
 
       <p>
-        All the materials on DevKit’s Website are provided &#34;as is&#34;.
-        DevKit makes no warranties, may it be expressed or implied, therefore
-        negates all other warranties. Furthermore, DevKit does not make any
-        representations concerning the accuracy or reliability of the use of the
-        materials on its Website or otherwise relating to such materials or any
-        sites linked to this Website.
+        All the materials on DataMagick’s Website are provided &#34;as is&#34;.
+        DataMagick makes no warranties, may it be expressed or implied,
+        therefore negates all other warranties. Furthermore, DataMagick does not
+        make any representations concerning the accuracy or reliability of the
+        use of the materials on its Website or otherwise relating to such
+        materials or any sites linked to this Website.
       </p>
 
       <p className="my-4 text-xl font-semibold">4. Limitations</p>
 
       <p>
-        DevKit or its suppliers will not be hold accountable for any damages
+        DataMagick or its suppliers will not be hold accountable for any damages
         that will arise with the use or inability to use the materials on
-        DevKit’s Website, even if DevKit or an authorize representative of this
-        Website has been notified, orally or written, of the possibility of such
-        damage. Some jurisdiction does not allow limitations on implied
+        DataMagick’s Website, even if DataMagick or an authorize representative
+        of this Website has been notified, orally or written, of the possibility
+        of such damage. Some jurisdiction does not allow limitations on implied
         warranties or limitations of liability for incidental damages, these
         limitations may not apply to you.
       </p>
@@ -89,21 +89,21 @@ export default function TermsOfService() {
       <p className="my-4 text-xl font-semibold">5. Revisions and Errata</p>
 
       <p>
-        The materials appearing on DevKit’s Website may include technical,
-        typographical, or photographic errors. DevKit will not promise that any
-        of the materials in this Website are accurate, complete, or current.
-        DevKit may change the materials contained on its Website at any time
-        without notice. DevKit does not make any commitment to update the
+        The materials appearing on DataMagick’s Website may include technical,
+        typographical, or photographic errors. DataMagick will not promise that
+        any of the materials in this Website are accurate, complete, or current.
+        DataMagick may change the materials contained on its Website at any time
+        without notice. DataMagick does not make any commitment to update the
         materials.
       </p>
 
       <p className="my-4 text-xl font-semibold">6. Links</p>
 
       <p>
-        DevKit has not reviewed all of the sites linked to its Website and is
-        not responsible for the contents of any such linked site. The presence
-        of any link does not imply endorsement by DevKit of the site. The use of
-        any linked website is at the user’s own risk.
+        DataMagick has not reviewed all of the sites linked to its Website and
+        is not responsible for the contents of any such linked site. The
+        presence of any link does not imply endorsement by DataMagick of the
+        site. The use of any linked website is at the user’s own risk.
       </p>
 
       <p className="my-4 text-xl font-semibold">
@@ -111,9 +111,9 @@ export default function TermsOfService() {
       </p>
 
       <p>
-        DevKit may revise these Terms of Use for its Website at any time without
-        prior notice. By using this Website, you are agreeing to be bound by the
-        current version of these Terms and Conditions of Use.
+        DataMagick may revise these Terms of Use for its Website at any time
+        without prior notice. By using this Website, you are agreeing to be
+        bound by the current version of these Terms and Conditions of Use.
       </p>
 
       <p className="my-4 text-xl font-semibold">8. Your Privacy</p>
@@ -123,8 +123,8 @@ export default function TermsOfService() {
       <p className="my-4 text-xl font-semibold">9. Governing Law</p>
 
       <p>
-        Any claim related to DevKit&apos;s Website shall be governed by the laws
-        of in without regards to its conflict of law provisions.
+        Any claim related to DataMagick&apos;s Website shall be governed by the
+        laws of in without regards to its conflict of law provisions.
       </p>
     </div>
   );

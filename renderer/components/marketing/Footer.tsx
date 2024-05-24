@@ -86,7 +86,7 @@ export default function Footer() {
         <div className="mx-auto w-64 flex-shrink-0 text-center md:mx-0 md:text-left">
           <div className="title-font mb-6 flex cursor-pointer items-center font-medium md:mb-0">
             <div className="mx-auto flex items-center md:mx-0">
-              <img src="/logo.png" className="z-10 w-16" alt="DevKit Loo" />
+              <img src="/logo.png" className="z-10 w-16" alt="DataMagick Loo" />
               <span className="z-10 ml-1 text-xl font-semibold text-white">
                 {companyName}
               </span>
@@ -142,7 +142,7 @@ export default function Footer() {
             className="text-center text-sm tracking-normal sm:text-left"
             style={{ color: "#aaaaaa" }}
           >
-            Copyright © 2022 - 2023 DevKit. All rights reserved.
+            Copyright © 2022 - 2023 DataMagick. All rights reserved.
           </h6>
           <span className="mt-2 inline-flex justify-center gap-4 sm:ml-auto sm:mt-0 sm:justify-start">
             {socialLinks.map((socialLink, index) => (

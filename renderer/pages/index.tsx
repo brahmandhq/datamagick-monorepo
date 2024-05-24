@@ -172,7 +172,7 @@ export default function Home({ tweets = [] }) {
     },
     {
       content:
-        "I’m glad we invested in DevKit. It paced up productivity by a large factor. It makes every developer look good. One of our Leads quoted that “it’d be every developer's bookmark”",
+        "I’m glad we invested in DataMagick. It paced up productivity by a large factor. It makes every developer look good. One of our Leads quoted that “it’d be every developer's bookmark”",
       name: "Prabhu M C",
       title: "Founder & Product Architect, Datadrone",
       image: "/images/prabhu.png",
@@ -275,7 +275,7 @@ export default function Home({ tweets = [] }) {
 
       <div className="mx-auto my-60 max-w-6xl px-6 xl:p-0">
         <h2 className="mx-auto mb-12 max-w-3xl text-center text-3xl font-semibold tracking-normal text-white">
-          Over {uniqueVisitorsCount} developers have already used DevKit
+          Over {uniqueVisitorsCount} developers have already used DataMagick
         </h2>
         <div className="mx-auto grid max-w-4xl grid-cols-3 flex-wrap items-center justify-center gap-4 gap-y-3 text-center sm:grid-cols-6 md:grid-cols-6 xl:grid-cols-12">
           {logos.map((logo) => (
@@ -320,7 +320,7 @@ export default function Home({ tweets = [] }) {
         >
           <img
             src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=326758&theme=light"
-            alt={`DevKit - The Ultimate Developer Toolkit | Product Hunt`}
+            alt={`DataMagick - The Ultimate Developer Toolkit | Product Hunt`}
             style={{ width: "250px", height: "54px" }}
             width="250"
             height="54"

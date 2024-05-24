@@ -34,9 +34,8 @@ export default function Tool(props) {
     setCharts,
     savedDashboardTabs,
     setSavedDashboardTabs,
-    onSuccessfulConnect
+    onSuccessfulConnect,
   } = props;
-
 
   const addTab = () => {
     const newTabId = uuidv4();
@@ -121,12 +120,11 @@ export default function Tool(props) {
   };
   return (
     <div>
-
       <div className="">
         {Object.keys(connections).length === 0 ? (
           <div className="flex justify-center items-center mt-52">
             <div className="bg-blue-400 text-white text-center py-2 px-4 rounded-md shadow-md">
-              <h1>You have to make a connection.</h1>
+              <h1>Please create a connection</h1>
             </div>
           </div>
         ) : (
@@ -153,8 +151,9 @@ export default function Tool(props) {
               onEdit={onEdit}
               onChange={onChange}
               items={tabIds.map((tabId) => {
-                const label = `${tabs[tabId]?.["name"]?.substring(0, 15) || "Tab"
-                  }`;
+                const label = `${
+                  tabs[tabId]?.["name"]?.substring(0, 15) || "Tab"
+                }`;
 
                 const isSave = deepEqual(tabs[tabId], savedQueryTabs[tabId]);
 
@@ -169,12 +168,9 @@ export default function Tool(props) {
                     </div>
                   ),
                   children: (
-
-
                     <>
                       {!tabs[tabId]?.["isDashboard"] ? (
                         <SingleTab
-
                           currentTabId={tabId}
                           tabs={tabs}
                           setTabs={setTabs}
@@ -183,7 +179,6 @@ export default function Tool(props) {
                           charts={charts}
                           setCharts={setCharts}
                           onSuccessfulConnect={onSuccessfulConnect}
-
                           {...{
                             savedQueryTabs,
                             setSavedQueryTabs,
@@ -208,7 +203,6 @@ export default function Tool(props) {
                         />
                       )}
                     </>
-
                   ),
                   closeIcon: <Close className="custom-close-icon" />,
                 };

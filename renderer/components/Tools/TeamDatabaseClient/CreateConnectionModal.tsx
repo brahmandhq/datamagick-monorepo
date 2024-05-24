@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Controller, useForm } from "react-hook-form";
-import { useRouter } from 'next/router';
+import { useRouter } from "next/router";
 import { zodResolver } from "@hookform/resolvers/zod";
 import CloseIcon from "@mui/icons-material/Close";
 import IconButton from "@mui/material/IconButton";
@@ -8,8 +8,8 @@ import { Modal } from "@nextui-org/react";
 import axios from "axios";
 import { v4 as uuidv4 } from "uuid";
 import * as z from "zod";
-import { useSession } from 'next-auth/react';
-import { Button } from '@nextui-org/react';
+import { useSession } from "next-auth/react";
+import { Button } from "@nextui-org/react";
 import Input from "../../Input";
 import Select from "../../Select";
 import { getDbInfo } from ".";
@@ -18,11 +18,11 @@ import { ListItemText } from "@mui/material";
 
 const dbOpions = [
   {
-    label: "MongoDb",
+    label: "MongoDB",
     value: "mongodb",
   },
   {
-    label: "PostgreSql",
+    label: "PostgreSQL",
     value: "postgresql",
   },
 ];
@@ -43,7 +43,7 @@ export default function CreateConnectionModal(props) {
     setCurrentConnectionId,
   } = props;
   const [open, setOpen] = React.useState(false);
-  const [status, setStatus] = React.useState('');
+  const [status, setStatus] = React.useState("");
   const [loading, setLoading] = React.useState(false);
   const {
     handleSubmit,
@@ -73,8 +73,13 @@ export default function CreateConnectionModal(props) {
 
     return Object.keys(tableNames);
   }
-  const storeDbInfo = async (name: string, db: string, dbData: string[], email: string) => {
-    setStatus('Creating Connection...')
+  const storeDbInfo = async (
+    name: string,
+    db: string,
+    dbData: string[],
+    email: string
+  ) => {
+    setStatus("Creating Connection...");
     try {
       const response = await axios.post(
         "/api/database-client/create-connectionInfo",
@@ -85,22 +90,18 @@ export default function CreateConnectionModal(props) {
       if (response) {
         return response.data.dbInfo;
       }
-
     } catch (e) {
       console.log("Error storing DbInfo: ", e);
     }
   };
   const { id } = router.query;
   const onSubmit = async (values: z.infer<typeof connectionSchema>) => {
-    setStatus('Connecting...')
+    setStatus("Connecting...");
     setLoading(true);
     try {
-      const response = await axios.post(
-        `/api/database-client/connect`,
-        {
-          connectionString: values.dbConnectionString,
-        }
-      );
+      const response = await axios.post(`/api/database-client/connect`, {
+        connectionString: values.dbConnectionString,
+      });
       if (response.status !== 200) {
         toast.error("Error occurred while connecting to database", {
           position: "top-right",
@@ -122,14 +123,14 @@ export default function CreateConnectionModal(props) {
         position: "top-right",
       });
     } finally {
-      setStatus('');
+      setStatus("");
       setLoading(false);
     }
   };
 
   return (
     <React.Fragment>
-      <ListItemText
+      {/* <ListItemText
         className="text-white"
         onClick={(event) => {
           event.stopPropagation();
@@ -137,7 +138,7 @@ export default function CreateConnectionModal(props) {
         }}
       >
         Create Connection
-      </ListItemText>
+      </ListItemText> */}
       <Modal
         onClose={handleClose}
         aria-labelledby="customized-dialog-title"
@@ -229,7 +230,7 @@ export default function CreateConnectionModal(props) {
               color="primary"
               className="bg-[#0070ef] text-white"
             >
-              {loading ? status : 'Connect'}
+              {loading ? status : "Connect"}
             </Button>
           </Modal.Footer>
         </form>

@@ -94,7 +94,7 @@ export default function PersistentDrawerLeft(props) {
               <img
                 src="/logo.png"
                 style={{ width: "40px" }}
-                alt="DevKit Logo"
+                alt="DataMagick Logo"
               />
               <span
                 className="text-md ml-1 font-semibold"
@@ -165,7 +165,7 @@ export default function PersistentDrawerLeft(props) {
               className="bp3-dark flex items-center"
               style={{ width: "125px", height: "40px" }}
             >
-              {
+              {/* {
                 <div className="pr-2 text-sm font-semibold">
                   <Link legacyBehavior href="/blog/home">
                     <a href="/blog/home" style={{ color: "white" }}>
@@ -173,7 +173,7 @@ export default function PersistentDrawerLeft(props) {
                     </a>
                   </Link>
                 </div>
-              }
+              } */}
               <button
                 className="bp3-button bp3-minimal bp3-intent-primary ml-2"
                 value={""}

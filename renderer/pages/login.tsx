@@ -137,7 +137,7 @@ export default function Login() {
                                 <GitHubIcon className="mr-4" />
                                 Login with GitHub
                             </Button> */}
-              <form
+              {/* <form
                 onSubmit={handleSubmit}
                 className="flex flex-col items-center justify-center gap-2"
               >
@@ -163,7 +163,7 @@ export default function Login() {
                 >
                   <Email className="mr-4" /> Login with Email
                 </Button>
-              </form>
+              </form> */}
               <div className="mx-auto w-9/12 text-left">
                 {/* <div className="mt-4">
                 <input

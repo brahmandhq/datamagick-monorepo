@@ -10,7 +10,7 @@ const productsList: ProductWithPrice[] = [
   {
     id: "123",
     active: true,
-    name: "DevKit Annual Subscription",
+    name: "DataMagick Annual Subscription",
     description: "The Essential Developer Toolkit",
     image: "https://getdevkit.com/logo.png",
     //@ts-ignore
@@ -41,7 +41,7 @@ export default function PricingPage({ products = productsList }) {
     <>
       <Head>
         <script async src="https://js.stripe.com/v3/pricing-table.js"></script>
-        <title>Pricing | DevKit</title>
+        <title>Pricing | DataMagick</title>
       </Head>
 
       <div className=" mx-auto max-w-6xl px-4 py-8 pb-2 sm:px-6 sm:py-24 sm:pb-8 lg:px-8">
@@ -50,7 +50,7 @@ export default function PricingPage({ products = productsList }) {
             Pricing
           </h1>
           <p className="m-auto mt-5 max-w-3xl text-xl tracking-normal text-zinc-200 sm:text-center sm:text-2xl">
-            Start using DevKit for free, and then pick a paid plan to unlock
+            Start using DataMagick for free, and then pick a paid plan to unlock
             tons of amazing features to boost your productivity to the moon 🚀
           </p>
         </div>

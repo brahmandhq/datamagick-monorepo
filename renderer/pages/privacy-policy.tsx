@@ -7,15 +7,15 @@ export default function PrivacyPolicy() {
     <div className="m-auto w-9/12 p-20 text-justify">
       <div className="mb-4">
         <p className=" text-center text-3xl font-semibold">
-          Privacy Policy for DevKit
+          Privacy Policy for DataMagick
         </p>
       </div>
 
       <p>
-        At DevKit, accessible from <b>getdevkit.com</b>, one of our main
+        At DataMagick, accessible from <b>getdevkit.com</b>, one of our main
         priorities is the privacy of our visitors. This Privacy Policy document
-        contains types of information that is collected and recorded by DevKit
-        and how we use it.
+        contains types of information that is collected and recorded by
+        DataMagick and how we use it.
       </p>
 
       <p>
@@ -26,9 +26,9 @@ export default function PrivacyPolicy() {
       <p>
         This Privacy Policy applies only to our online activities and is valid
         for visitors to our website with regards to the information that they
-        shared and/or collect in DevKit. This policy is not applicable to any
-        information collected offline or via channels other than this website.
-        Our Privacy Policy was created with the help of the{" "}
+        shared and/or collect in DataMagick. This policy is not applicable to
+        any information collected offline or via channels other than this
+        website. Our Privacy Policy was created with the help of the{" "}
         <a href="https://www.privacypolicygenerator.info">
           Free Privacy Policy Generator
         </a>
@@ -83,9 +83,9 @@ export default function PrivacyPolicy() {
       <p className="my-4 text-xl font-semibold">Log Files</p>
 
       <p>
-        DevKit follows a standard procedure of using log files. These files log
-        visitors when they visit websites. All hosting companies do this and a
-        part of hosting services&#39; analytics. The information collected by
+        DataMagick follows a standard procedure of using log files. These files
+        log visitors when they visit websites. All hosting companies do this and
+        a part of hosting services&#39; analytics. The information collected by
         log files include internet protocol (IP) addresses, browser type,
         Internet Service Provider (ISP), date and time stamp, referring/exit
         pages, and possibly the number of clicks. These are not linked to any
@@ -98,9 +98,9 @@ export default function PrivacyPolicy() {
       <p className="my-4 text-xl font-semibold">Cookies and Web Beacons</p>
 
       <p>
-        Like any other website, DevKit uses &#39;cookies&#39;. These cookies are
-        used to store information including visitors&#39; preferences, and the
-        pages on the website that the visitor accessed or visited. The
+        Like any other website, DataMagick uses &#39;cookies&#39;. These cookies
+        are used to store information including visitors&#39; preferences, and
+        the pages on the website that the visitor accessed or visited. The
         information is used to optimize the users&#39; experience by customizing
         our web page content based on visitors&#39; browser type and/or other
         information.
@@ -120,28 +120,28 @@ export default function PrivacyPolicy() {
 
       <p>
         You may consult this list to find the Privacy Policy for each of the
-        advertising partners of DevKit.
+        advertising partners of DataMagick.
       </p>
 
       <p>
         Third-party ad servers or ad networks uses technologies like cookies,
         JavaScript, or Web Beacons that are used in their respective
-        advertisements and links that appear on DevKit, which are sent directly
-        to users&#39; browser. They automatically receive your IP address when
-        this occurs. These technologies are used to measure the effectiveness of
-        their advertising campaigns and/or to personalize the advertising
-        content that you see on websites that you visit.
+        advertisements and links that appear on DataMagick, which are sent
+        directly to users&#39; browser. They automatically receive your IP
+        address when this occurs. These technologies are used to measure the
+        effectiveness of their advertising campaigns and/or to personalize the
+        advertising content that you see on websites that you visit.
       </p>
 
       <p>
-        Note that DevKit has no access to or control over these cookies that are
-        used by third-party advertisers.
+        Note that DataMagick has no access to or control over these cookies that
+        are used by third-party advertisers.
       </p>
 
       <p className="my-4 text-xl font-semibold">Third Party Privacy Policies</p>
 
       <p>
-        DevKit&#39;s Privacy Policy does not apply to other advertisers or
+        DataMagick&#39;s Privacy Policy does not apply to other advertisers or
         websites. Thus, we are advising you to consult the respective Privacy
         Policies of these third-party ad servers for more detailed information.
         It may include their practices and instructions about how to opt-out of
@@ -228,11 +228,11 @@ export default function PrivacyPolicy() {
       </p>
 
       <p>
-        DevKit does not knowingly collect any Personal Identifiable Information
-        from children under the age of 13. If you think that your child provided
-        this kind of information on our website, we strongly encourage you to
-        contact us immediately and we will do our best efforts to promptly
-        remove such information from our records.
+        DataMagick does not knowingly collect any Personal Identifiable
+        Information from children under the age of 13. If you think that your
+        child provided this kind of information on our website, we strongly
+        encourage you to contact us immediately and we will do our best efforts
+        to promptly remove such information from our records.
       </p>
     </div>
   );

@@ -15,14 +15,13 @@ import { ToastContainer } from "react-toastify";
 import axios from "axios";
 import { useSession } from "next-auth/react";
 
-
 const DataSidebar = dynamic(() => import("./DataSidebar"), {
   ssr: false,
 });
 
 function arrayToObject(arr) {
   const obj = {};
-  arr.forEach(item => {
+  arr.forEach((item) => {
     obj[item.id] = { ...item, id: item.id };
   });
 
@@ -30,16 +29,14 @@ function arrayToObject(arr) {
 }
 export const getDbInfo = async (setConnections, email) => {
   try {
-    const response = await axios.get(
-      `/api/database-client/get-connectionInfo`
-    );
+    const response = await axios.get(`/api/database-client/get-connectionInfo`);
 
     if (response) {
-
       const dbData = arrayToObject(response.data);
-      const storedConnections = JSON.parse(localStorage.getItem('database-client-connection')) || {};
+      const storedConnections =
+        JSON.parse(localStorage.getItem("database-client-connection")) || {};
       // Check connection already exists
-      Object.keys(dbData).forEach(connectionId => {
+      Object.keys(dbData).forEach((connectionId) => {
         const connection = dbData[connectionId];
         if (!storedConnections[connectionId]) {
           const newConnection = {
@@ -53,19 +50,20 @@ export const getDbInfo = async (setConnections, email) => {
         }
       });
 
-      localStorage.setItem('database-client-connection', JSON.stringify(storedConnections));
+      localStorage.setItem(
+        "database-client-connection",
+        JSON.stringify(storedConnections)
+      );
       setConnections(storedConnections);
       return response.data;
     }
   } catch (e) {
     console.log("Error fetching DbInfo: ", e);
   }
-}
+};
 export const getSavedQuery = async (setSavedQueryTabs, email) => {
   try {
-    const response = await axios.get(
-      `/api/user/get-savedQuery`,
-    );
+    const response = await axios.get(`/api/user/get-savedQuery`);
 
     if (response) {
       const savedQueryData = arrayToObject(response.data);
@@ -75,12 +73,10 @@ export const getSavedQuery = async (setSavedQueryTabs, email) => {
   } catch (e) {
     console.log("Error fetching Saved Queries: ", e);
   }
-}
+};
 export const getDashboard = async (setSavedDashboardTabs, email) => {
   try {
-    const response = await axios.get(
-      `/api/user/get-dashboard`
-    );
+    const response = await axios.get(`/api/user/get-dashboard`);
 
     if (response) {
       const savedDashboardData = arrayToObject(response.data);
@@ -90,7 +86,7 @@ export const getDashboard = async (setSavedDashboardTabs, email) => {
   } catch (e) {
     console.log("Error fetching Saved Dashboards: ", e);
   }
-}
+};
 export default function NewDevTool() {
   const [mode, setMode] = React.useState<"light" | "dark">("dark");
   const theme = React.useMemo(
@@ -121,7 +117,6 @@ export default function NewDevTool() {
     "database-client-connection"
   );
 
-
   const [currentConnectionId, setCurrentConnectionId] = useLocalStorage(
     "",
     "database-client-current-connection-id"
@@ -136,7 +131,6 @@ export default function NewDevTool() {
 
   useEffect(() => {
     setTabIds(Object.keys(tabs || {}) || []);
-
   }, [tabs]);
   const getTeams = async () => {
     try {
@@ -147,13 +141,13 @@ export default function NewDevTool() {
     } catch (error) {
       console.log("Error fetching teams: ", error);
     }
-  }
+  };
   const { data } = useSession();
   useEffect(() => {
     getDbInfo(setConnections, data?.user?.email);
     getSavedQuery(setSavedQueryTabs, data?.user?.email);
     getDashboard(setSavedDashboardTabs, data?.user?.email);
-  }, [])
+  }, []);
 
   const addTab = () => {
     const newTabId = uuidv4();
@@ -184,9 +178,9 @@ export default function NewDevTool() {
     setContextMenu(
       contextMenu === null
         ? {
-          mouseX: event.clientX + 2,
-          mouseY: event.clientY - 6,
-        }
+            mouseX: event.clientX + 2,
+            mouseY: event.clientY - 6,
+          }
         : null
     );
   };
@@ -201,18 +195,13 @@ export default function NewDevTool() {
   };
   return (
     <div>
-      {forceRender && (
-        <div style={{ display: "none" }}>
-
-          {Math.random()}
-        </div>
-      )}
+      {forceRender && <div style={{ display: "none" }}>{Math.random()}</div>}
       <DatabaseClientLayout
         theme={theme}
         DrawerBody={
           <div
             className="hide-scrollbar"
-            onContextMenu={handleContextMenu}
+            // onContextMenu={handleContextMenu}
             style={{
               height: "75vh",
               flex: 1,
@@ -238,7 +227,7 @@ export default function NewDevTool() {
                 setSavedDashboardTabs,
               }}
             />
-            <Menu
+            {/* <Menu
               open={contextMenu !== null}
               onClose={handleClose}
               anchorReference="anchorPosition"
@@ -264,7 +253,7 @@ export default function NewDevTool() {
                   }}
                 />
               </MenuItem>
-            </Menu>
+            </Menu> */}
           </div>
         }
         DrawerFooter={
@@ -308,7 +297,6 @@ export default function NewDevTool() {
                   setCharts,
                   savedDashboardTabs,
                   setSavedDashboardTabs,
-
                 }}
               />
             </div>

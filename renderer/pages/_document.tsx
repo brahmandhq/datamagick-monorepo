@@ -41,20 +41,42 @@ class MyDocument extends Document {
           <meta name="format-detection" content="telephone=no" />
           <meta name="mobile-web-app-capable" content="yes" />
 
-          <link rel="apple-touch-icon" href="/logo.png" />
-          <link rel="apple-touch-icon" sizes="152x152" href="/logo.png" />
-          <link rel="apple-touch-icon" sizes="180x180" href="/logo.png" />
-          <link rel="apple-touch-icon" sizes="167x167" href="/logo.png" />
+          <link rel="apple-touch-icon" href="/logo-with-bg.png" />
+          <link
+            rel="apple-touch-icon"
+            sizes="152x152"
+            href="/logo-with-bg.png"
+          />
+          <link
+            rel="apple-touch-icon"
+            sizes="180x180"
+            href="/logo-with-bg.png"
+          />
+          <link
+            rel="apple-touch-icon"
+            sizes="167x167"
+            href="/logo-with-bg.png"
+          />
 
-          <link rel="icon" type="image/png" sizes="32x32" href="/logo.png" />
-          <link rel="icon" type="image/png" sizes="16x16" href="/logo.png" />
+          <link
+            rel="icon"
+            type="image/png"
+            sizes="32x32"
+            href="/logo-with-bg.png"
+          />
+          <link
+            rel="icon"
+            type="image/png"
+            sizes="16x16"
+            href="/logo-with-bg.png"
+          />
           <link rel="manifest" href="/manifest.json" />
           <link
             rel="mask-icon"
             href="/icons/safari-pinned-tab.svg"
             color="#5bbad5"
           />
-          <link rel="shortcut icon" href="/logo.png" />
+          <link rel="shortcut icon" href="/logo-with-bg.png" />
 
           <meta property="og:type" content="website" />
           <meta property="og:site_name" content="DataMagick" />

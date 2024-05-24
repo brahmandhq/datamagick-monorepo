@@ -3,7 +3,7 @@ import React from "react";
 import Layout from "../components/Layout";
 
 export default function PrivacyPolicy() {
-  const heading = "Refund Policy for DevKit";
+  const heading = "Refund Policy for DataMagick";
   const content = `In case you aren't satisfied with the product, you can raise a
   refund request by sending an email to harsh@getdevkit.com.
   Refund requests must take place within 14 days of the purchase. Any
